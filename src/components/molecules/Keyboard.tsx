@@ -35,8 +35,8 @@ const Keyboard: FC<KeyboardProps> = ({
         >
           {lines.map((key) => {
             const width = [ENTER_KEY, DELETE_KEY].includes(key)
-              ? "4rem"
-              : "3rem";
+              ? "w-[4rem]"
+              : "w-[3rem]";
 
             return (
               <div
@@ -46,7 +46,7 @@ const Keyboard: FC<KeyboardProps> = ({
                   return onKeyboardPressed(key);
                 }}
                 className={clsx(
-                  `w-[${width}] p-2 border-2 border-gray-300 rounded flex flex-row justify-center items-center text-gray-600 font-semibold cursor-pointer`,
+                  `${width} p-2 border-2 border-gray-300 rounded flex flex-row justify-center items-center text-gray-600 font-semibold cursor-pointer`,
                   keyboardStates[key]?.state
                     ? TILE_COLOR[keyboardStates[key].state]
                     : ""
