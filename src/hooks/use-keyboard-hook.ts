@@ -57,6 +57,10 @@ const useKeyboardHook = ({ constants, lineValidation }: KeyboardHookProps) => {
       setTries(updatedTries);
 
       if (!validation.win) {
+        if (currentLineIndex === constants.tries - 1) {
+          setWin(false);
+          return;
+        }
         setCurrentLineIndex((state) => state + 1);
         setCurrentLetterIndex(0);
 
