@@ -8,7 +8,7 @@ const GAMES_CONSTANT: Record<GameTypes, GameConstant> = {
     keyboard: [
       ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
       ["a", "s", "d", "f", "g", "h", "j", "k", "l"],
-      [DELETE_KEY, "z", "x", "c", "v", "b", "n", "m", ENTER_KEY],
+      [ENTER_KEY, "z", "x", "c", "v", "b", "n", "m", DELETE_KEY],
     ],
   },
   nerdle: {
