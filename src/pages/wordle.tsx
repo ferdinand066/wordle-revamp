@@ -84,6 +84,7 @@ const Wordle: FC<PageProps> = ({}) => {
   const { tries, keyboardState, onKeyboardPressed } = useKeyboardHook({
     constants: CONSTANTS,
     lineValidation: (str, tries) => winCondition(str, tries, answer!),
+    gameType: "wordle",
   });
 
   return (
@@ -105,7 +106,6 @@ const Wordle: FC<PageProps> = ({}) => {
           constants={CONSTANTS}
           onKeyboardPressed={onKeyboardPressed}
           keyboardStates={keyboardState}
-          gameType={"wordle"}
         />
       </div>
       <WordleInstruction />
