@@ -2,9 +2,11 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { DELETE_KEY, ENTER_KEY } from "../constants/games";
 import { useGameCondition } from "../stores/use-game-condition";
+import { useAppScore } from "../stores/use-game-information-store";
 
 type KeyboardHookProps = {
   constants: GameConstant;
+  gameType: GameTypes;
   lineValidation: (value: string, tries: string[]) => ConditionCheckerResult;
 };
 
@@ -13,14 +15,16 @@ const emptyTile = {
   state: undefined,
 };
 
-const useKeyboardHook = ({ constants, lineValidation }: KeyboardHookProps) => {
+const useKeyboardHook = ({ constants, gameType, lineValidation }: KeyboardHookProps) => {
   // Logic For Game Mechanism
   const { setWin } = useGameCondition();
+  const { addWinStreak, resetWinStreak } = useAppScore();
   const [tries, setTries] = useState<TileState[][]>(
     Array.from({ length: constants.tries }, () =>
       Array.from({ length: constants.tileSize }, () => ({ ...emptyTile }))
     )
   );
+  
   const [keyboardState, setKeyboardState] = useState<Record<string, TileState>>(
     constants.keyboard
       .flat()
@@ -59,6 +63,7 @@ const useKeyboardHook = ({ constants, lineValidation }: KeyboardHookProps) => {
       if (!validation.win) {
         if (currentLineIndex === constants.tries - 1) {
           setWin(false);
+          resetWinStreak(gameType);
           return;
         }
         setCurrentLineIndex((state) => state + 1);
@@ -89,6 +94,7 @@ const useKeyboardHook = ({ constants, lineValidation }: KeyboardHookProps) => {
         });
       } else {
         setWin(true);
+        addWinStreak(gameType);
       }
       return;
     }
