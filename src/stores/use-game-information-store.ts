@@ -24,6 +24,9 @@ type AppScoreState = {
   getScore: (game: GameTypes) => GameScoreProps;
   setScore: (game: GameTypes, score: GameScoreProps) => void;
 
+  addWinStreak: (game: GameTypes) => void;
+  resetWinStreak: (game: GameTypes) => void;
+
   setInstruction: (game: GameTypes, value: boolean) => void;
   reset: () => void;
 };
@@ -42,6 +45,35 @@ export const useAppScore = create<AppScoreState>()(
             [game]: score,
           },
         })),
+      
+      addWinStreak: (game) =>
+        set((state) => {
+          const currentScore = state.scores[game];
+          return {
+            scores: {
+              ...state.scores,
+              [game]: {
+                ...currentScore,
+                streak: currentScore.streak + 1,
+              },
+            },
+          };
+        }),
+
+      resetWinStreak: (game) =>
+        set((state) => {
+          const currentScore = state.scores[game];
+          return {
+            scores: {
+              ...state.scores,
+              [game]: {
+                ...currentScore,
+                streak: 0,
+              },
+            },
+          };
+        }),
+      
       setInstruction: (game, value) =>
         set((state) => ({
           firstInstruction: {
