@@ -73,7 +73,7 @@ const winCondition = (
 const Wordle: FC<PageProps> = ({}) => {
   // Base Initialization Data
   const { setInstruction } = useAppScore();
-  // const score = getScore("wordle");
+  const score = getScore("wordle");
   const [answer, setAnswer] = useState<string>();
   useEffect(() => {
     const randomIndex = Math.floor(Math.random() * words.length);
@@ -88,7 +88,8 @@ const Wordle: FC<PageProps> = ({}) => {
 
   return (
     <div className="flex flex-col gap-6 justify-center items-center">
-      <div className="flex flex-row justify-end w-full items-center text-gray-600 text-xl">
+      <div className="flex flex-row justify-end w-full items-center text-gray-600 mx-2 text-xl">
+        <span>Streak: {score.streak}</span>
         <i
           onClick={() => setInstruction("wordle", true)}
           className="fa fa-question-circle hover:text-gray-800 cursor-pointer"
