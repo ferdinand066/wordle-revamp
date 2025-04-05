@@ -99,7 +99,7 @@ const Wordle: FC<PageProps> = ({}) => {
           <Lines key={index} constants={CONSTANTS} value={value} />
         ))}
       </div>
-      <div className="flex flex-col flex-1 gap-2 w-[95vw] max-w-[32rem]">
+      <div className="flex flex-col flex-1 gap-2 w-screen max-w-[32rem]">
         <Keyboard
           constants={CONSTANTS}
           onKeyboardPressed={onKeyboardPressed}
