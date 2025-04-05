@@ -12,9 +12,9 @@ type KeyboardProps = {
 const getKeywordKey = (key: string): string | ReactNode => {
   switch (key) {
     case ENTER_KEY:
-      return <i className="fa-solid fa-arrow-turn-down-left"></i>;
+      return <i className="fa-solid fa-arrow-turn-down-right"></i>;
     case DELETE_KEY:
-      return <i className="fa-solid fa-delete-right"></i>;
+      return <i className="fa-solid fa-delete-left"></i>;
     default:
       return key.toUpperCase();
   }
