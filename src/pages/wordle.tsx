@@ -72,7 +72,7 @@ const winCondition = (
 
 const Wordle: FC<PageProps> = ({}) => {
   // Base Initialization Data
-  const { setInstruction } = useAppScore();
+  const { setInstruction, getScore } = useAppScore();
   const score = getScore("wordle");
   const [answer, setAnswer] = useState<string>();
   useEffect(() => {
