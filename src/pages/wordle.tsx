@@ -105,6 +105,7 @@ const Wordle: FC<PageProps> = ({}) => {
           constants={CONSTANTS}
           onKeyboardPressed={onKeyboardPressed}
           keyboardStates={keyboardState}
+          gameType={"wordle"}
         />
       </div>
       <WordleInstruction />
