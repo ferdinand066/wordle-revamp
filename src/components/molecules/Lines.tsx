@@ -10,7 +10,7 @@ type LinesProps = {
 const Lines: FC<LinesProps> = ({ constants, value }) => {
   return (
     <div
-      className={`grid grid-cols-${constants.tileSize} gap-2 flex-1 items-center`}
+      className={`grid grid-cols-5 gap-2 flex-1 items-center`}
     >
       {new Array(constants.tileSize).fill("").map((_, index) => {
         const currentTile = value[index];
