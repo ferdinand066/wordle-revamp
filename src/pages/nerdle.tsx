@@ -55,20 +55,52 @@ const generalCondition = (
   };
 };
 
+const isValidEquation = (equation: string): boolean => {
+  // Must contain exactly one '='
+  const parts = equation.split('=');
+  if (parts.length !== 2) return false;
+
+  const [left, right] = parts;
+  if (!left || !right) return false;
+
+  // Check if right side is a valid number
+  if (!/^\d+$/.test(right)) return false;
+
+  // Prevent leading zero in result
+  if (/^0\d+/.test(right)) return false;
+
+  // Validate left side only contains allowed chars
+  if (!/^[0-9+\-*/]+$/.test(left)) return false;
+
+  // Prevent leading zeros in operands (e.g. 03+04)
+  const tokens = left.split(/[\+\-\*\/]/);
+  if (tokens.some((token) => /^0\d+/.test(token))) return false;
+
+  try {
+    const result = eval(left);
+    if (!Number.isInteger(result)) return false;
+    return parseInt(right) === result;
+  } catch {
+    return false;
+  }
+};
+
 const winCondition = (
   str: string,
   tries: string[],
   answer: string
 ): ConditionCheckerResult => {
-  if (!words.includes(str))
+  if (!isValidEquation(str)) {
     return {
       win: false,
-      error: "Word is not exists",
+      error: "Invalid equation",
       state: null,
     };
+  }
 
   return generalCondition(str, tries, answer);
 };
+
 
 const Nerdle: FC<PageProps> = ({}) => {
   // Base Initialization Data
