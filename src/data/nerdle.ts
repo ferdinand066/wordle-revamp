@@ -48,8 +48,6 @@ function generateRandomEquation(): string {
       continue;
     }
   }
-
-  return null;
 }
 
 export default generateRandomEquation;
