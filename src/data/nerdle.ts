@@ -10,12 +10,8 @@ function hasLeadingZero(str: string): boolean {
 }
 
 // Generates a single valid 8-character equation
-function generateRandomEquation(): string | null {
-  let attempts = 0;
-
-  while (attempts < 1000) {
-    attempts++;
-
+function generateRandomEquation(): string {
+  while (true) {
     const termCount = Math.random() < 0.5 ? 2 : 3;
 
     let expr = '';
