@@ -16,7 +16,7 @@ const GAMES_CONSTANT: Record<GameTypes, GameConstant> = {
     tileSize: 8,
     keyboard: [
       ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"],
-      [DELETE_KEY, "+", "-", "*", "/", "=", ENTER_KEY],
+      [ENTER_KEY, "+", "-", "*", "/", "=", DELETE_KEY],
     ],
   },
 };
