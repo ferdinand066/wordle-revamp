@@ -17,7 +17,7 @@ const Lines: FC<LinesProps> = ({ constants, value }) => {
         let classAnimation = "";
 
         if (currentTile.state) {
-          classAnimation = `animate__flipInX animate__delay-${index}s`;
+          classAnimation = `animate__flipInX`;
         } else if (currentTile.letter) {
           classAnimation = "animate__bounceIn";
         }
@@ -26,10 +26,11 @@ const Lines: FC<LinesProps> = ({ constants, value }) => {
           <div
             key={index}
             className={clsx(
-              "aspect-square border border-gray-300 border-2 rounded p-2 w-full col-span-1 max-w-[4rem] flex flex-row justify-center items-center font-bold transition-all text-lg animate__animated",
+              "aspect-square border border-gray-300 rounded p-2 w-full col-span-1 max-w-[4rem] flex flex-row justify-center items-center font-bold transition-all text-lg animate__animated",
               classAnimation,
               !currentTile.state ? "" : TILE_COLOR[currentTile.state]
             )}
+            style={{animationDelay: classAnimation === "animate__bounceIn" ? "0s" : `${index * 300}ms`}}
           >
             <span>{currentTile.letter?.toUpperCase() ?? ""}</span>
           </div>

@@ -1,3 +1,5 @@
+import { useGameCondition } from "../../stores/use-game-condition";
+
 const navigation = [
   {
     name: "Instagram",
@@ -23,6 +25,7 @@ const navigation = [
 ];
 
 export default function Footer() {
+  const { showAnswer, setShowAnswer } = useGameCondition();
   return (
     <footer className="bg-white">
       <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8 border-t border-gray-200">
@@ -40,7 +43,7 @@ export default function Footer() {
           ))}
         </div>
         <div className="mt-8 md:mt-0 md:order-1">
-          <p className="text-center text-base text-gray-400">
+          <p onDoubleClick={() => setShowAnswer(!showAnswer)} className="text-center text-base text-gray-400">
             &copy; {new Date().getFullYear()} Ferdinand Gunawan.
           </p>
         </div>
