@@ -105,7 +105,7 @@ const winCondition = (
 const Nerdle: FC<PageProps> = ({}) => {
   // Base Initialization Data
   const { setInstruction, getScore } = useAppScore();
-  const score = getScore("wordle");
+  const score = getScore("nerdle");
   const [answer, setAnswer] = useState<string>();
   useEffect(() => {
     const generatedAnswer = generateRandomEquation();
