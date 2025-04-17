@@ -99,7 +99,7 @@ const Wordle: FC<PageProps> = ({}) => {
       <div className="flex flex-row justify-between w-full items-center text-gray-600 px-2 text-xl">
         <div className="flex flex-row gap-2 items-center cursor-pointer">
           <span>Streak: {score.streak}</span>
-          { score.streak > 10 && <i className={clsx("fa-solid fa-money-check-dollar", generateStreakIcon(score.streak))}></i>}
+          { score.streak > 5 && <i className={clsx("fa-solid fa-money-check-dollar", generateStreakIcon(score.streak))}></i>}
         </div>
         <i
           onClick={() => setInstruction("wordle", true)}
