@@ -17,9 +17,15 @@ const firstInstructionInitialValue: Record<GameTypes, boolean> = {
   nerdle: true,
 };
 
+const scoreRewardInitialValue: Record<GameTypes, boolean> = {
+  wordle: false,
+  nerdle: false,
+};
+
 type AppScoreState = {
   scores: Record<GameTypes, GameScoreProps>;
   firstInstruction: Record<GameTypes, boolean>;
+  scoreReward: Record<GameTypes, boolean>;
 
   getScore: (game: GameTypes) => GameScoreProps;
   setScore: (game: GameTypes, score: GameScoreProps) => void;
@@ -28,6 +34,7 @@ type AppScoreState = {
   resetWinStreak: (game: GameTypes) => void;
 
   setInstruction: (game: GameTypes, value: boolean) => void;
+  setScoreReward: (game: GameTypes, value: boolean) => void;
   reset: () => void;
 };
 
@@ -36,6 +43,7 @@ export const useAppScore = create<AppScoreState>()(
     (set, get) => ({
       scores: initialValue,
       firstInstruction: firstInstructionInitialValue,
+      scoreReward: scoreRewardInitialValue,
 
       getScore: (game) => get().scores[game],
       setScore: (game, score) =>
@@ -78,6 +86,14 @@ export const useAppScore = create<AppScoreState>()(
         set((state) => ({
           firstInstruction: {
             ...state.firstInstruction,
+            [game]: value,
+          },
+        })),
+
+      setScoreReward: (game, value) =>
+        set((state) => ({
+          scoreReward: {
+            ...state.scoreReward,
             [game]: value,
           },
         })),

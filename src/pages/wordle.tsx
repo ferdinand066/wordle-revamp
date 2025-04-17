@@ -8,6 +8,7 @@ import words from "../data/wordle";
 import useKeyboardHook from "../hooks/use-keyboard-hook";
 import { useAppScore } from "../stores/use-game-information-store";
 import PageProps from "../types/common/page-props";
+import clsx from "clsx";
 
 const CONSTANTS = GAMES_CONSTANT.wordle;
 
@@ -70,6 +71,12 @@ const winCondition = (
   return generalCondition(str, tries, answer);
 };
 
+const generateStreakIcon = (streak: number) => {
+  if (streak > 100) return "text-purple-500";
+  if (streak > 50) return "text-green-500";
+  return "text-blue-500";
+}
+
 const Wordle: FC<PageProps> = ({}) => {
   // Base Initialization Data
   const { setInstruction, getScore } = useAppScore();
@@ -90,7 +97,10 @@ const Wordle: FC<PageProps> = ({}) => {
   return (
     <div className="flex flex-col gap-6 justify-center items-center">
       <div className="flex flex-row justify-between w-full items-center text-gray-600 px-2 text-xl">
-        <span>Streak: {score.streak}</span>
+        <div className="flex flex-row gap-2 items-center cursor-pointer">
+          <span>Streak: {score.streak}</span>
+          { score.streak > 10 && <i className={clsx("fa-solid fa-money-check-dollar", generateStreakIcon(score.streak))}></i>}
+        </div>
         <i
           onClick={() => setInstruction("wordle", true)}
           className="fa fa-question-circle hover:text-gray-800 cursor-pointer"
